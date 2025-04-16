@@ -1,23 +1,24 @@
-# Getting Started with [Fastify-CLI](https://www.npmjs.com/package/fastify-cli)
-This project was bootstrapped with Fastify-CLI.
+# FastiVue-CRUD
 
-## Available Scripts
+1️⃣ Clone the Repo :
+git clone https://github.com/your-username/vue-fastify-crud-app.git
+cd vue-fastify-crud-app
 
-In the project directory, you can run:
+2️⃣ Backend Setup :
+cd backend
+npm install
+node server.js
 
-### `npm run dev`
+3️⃣ Frontend Setup :
+cd frontend
+npm install
+npm run serve
 
-To start the app in dev mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+📌 API Endpoints :
 
-### `npm start`
-
-For production mode
-
-### `npm run test`
-
-Run the test cases.
-
-## Learn More
-
-To learn Fastify, check out the [Fastify documentation](https://fastify.dev/docs/latest/).
+Method | Endpoint | Description
+GET | /users | Get all users
+GET | /users/:id | Get user by ID
+POST | /users | Add new user
+PUT | /users/:id | Update user
+DELETE | /users/:id | Delete user

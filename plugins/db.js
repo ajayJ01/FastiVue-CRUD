@@ -1,8 +1,8 @@
-const fp = require('fastify-plugin')
-const mysql = require('mysql2/promise')
+const fp = require('fastify-plugin');
+const mysql = require('mysql2/promise');
 
 async function dbConnector(fastify, options) {
-  const connection = await mysql.createPool({
+  const connection = mysql.createPool({
     host: 'localhost',
     user: 'root',
     password: '',
@@ -10,9 +10,9 @@ async function dbConnector(fastify, options) {
     waitForConnections: true,
     connectionLimit: 10,
     queueLimit: 0
-  })
+  });
 
-  fastify.decorate('mysql', connection)
+  fastify.decorate('mysql', connection);
 }
 
-module.exports = fp(dbConnector)
+module.exports = fp(dbConnector);

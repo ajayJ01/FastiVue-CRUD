@@ -1,9 +1,15 @@
-const fastify = require('fastify')();
+const fastify = require('fastify')({ logger: true });
 const cors = require('@fastify/cors');
 const path = require('path');
 const fastifyStatic = require('@fastify/static');
 const dbConnector = require('./plugins/db');
 const userRoutes = require('./routes/userRoutes');
+
+// Enable CORS first
+fastify.register(cors, {
+  origin: '*',
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS']
+});
 
 // Serve static files from frontend/dist
 fastify.register(fastifyStatic, {
@@ -16,15 +22,11 @@ fastify.get('/', async (request, reply) => {
   return reply.sendFile('index.html');
 });
 
-// Register plugins
+// Register DB connector
 fastify.register(dbConnector);
-fastify.register(userRoutes);
 
-// Enable CORS
-fastify.register(cors, {
-  origin: '*',
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS']
-});
+// Register routes
+fastify.register(userRoutes);
 
 // Start server
 fastify.listen({ port: 3000, host: '0.0.0.0' }, (err, address) => {
